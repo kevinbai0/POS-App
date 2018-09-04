@@ -14,7 +14,7 @@ var router = express.Router();
 
 router.use(express.json());
 
-if (process.env.NODE_ENV === "Production") {
+if (process.env.NODE_ENV === "production") {
     // Serve any static files
     app.use(express.static(path.join(__dirname, 'front-end/build')));
     // Handle React routing, return all requests to React app
