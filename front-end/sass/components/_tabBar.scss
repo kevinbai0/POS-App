@@ -1,0 +1,38 @@
+@import "../definitions";
+
+.tabbar-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20vw;
+    height: 100vh;
+    background-color: $mainBackgroundColor;
+    color: $mainFontColor;
+    font-family: $mainFont;
+    .welcome-bar {
+        background-color: $tintBackgroundColor;
+        color: white;
+        height: 15vh;
+        text-align: center;
+        margin: auto;
+        line-height: 15vh;
+        vertical-align: middle;
+        font-size: 3vw;
+        font-weight: 200
+    }
+    font-size: 2vw;
+
+    .menu-bar-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 85vh;
+        a {
+            text-decoration: inherit;
+            color: inherit;
+        }
+    }
+    border-right: 1px solid white;
+}
+
