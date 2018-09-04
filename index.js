@@ -14,14 +14,16 @@ var router = express.Router();
 
 router.use(express.json());
 
-// Serve any static files
-app.use(express.static(path.join(__dirname, 'front-end/build')));
-  // Handle React routing, return all requests to React app
-app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'front-end/build', 'index.html'));
-});
+if (process.env.NODE_ENV === "Production") {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, 'front-end/build')));
+    // Handle React routing, return all requests to React app
+    app.get('*', function(req, res) {
+        res.sendFile(path.join(__dirname, 'front-end/build', 'index.html'));
+    });
+}
 
-// Handle React routing, return all requests to React app
+
 
 // get clients
 router.get('/clients', (req, res) => {
@@ -31,6 +33,7 @@ router.get('/clients', (req, res) => {
 });
 
 router.get("/clients/bundled", (req, res) => {
+    console.log("GET CLIENTS");
     let query = req.query.name == null ? "" : req.query.name;
 
     Client.find({name: new RegExp(query, "i")}, async (err, clients) => {
@@ -72,11 +75,10 @@ router.get("/clients/:client_id", (req, res) => {
 })
 
 
-router.get("/removeAll/clients", (req, res) => {
-    Client.remove({}, (err) => {
-        res.send("Removed all");
+router.get("/removeAll", (req, res) => {
+    Client.deleteMany({}, (err) => {
     })
-    Products.remove({}, (err) => { res.send("Removed all")})
+    Product.deleteMany({}, (err) => { res.send("Removed all")})
 })
 
 // add a client
@@ -136,14 +138,16 @@ router.get("/products", (req, res) => {
 
 // add a product
 router.post("/products", (req, res) => {
+    console.log("Request");
+    console.log(req.body);
     let name = req.body.name;
     let price = req.body.price;
     let newProduct = new Product({
         name: name,
         price: price
     });
-    newProduct.save(() => console.log("user created"));
-    res.end("Okay");
+    newProduct.save(() => res.end("Okay"));
+    
 });
 
 // edit a product
