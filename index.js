@@ -147,4 +147,6 @@ router.put("/products/:product_id", (req, res) => {
     res.end("Success");
 })
 app.use("/api", router);
-app.listen(3001);
+
+const port = process.env.PORT || 5000;
+app.listen(port);
