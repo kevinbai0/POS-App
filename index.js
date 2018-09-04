@@ -13,6 +13,8 @@ var router = express.Router();
 
 router.use(express.json());
 
+app.get("/", (req, res) => res.send("It works!"));
+
 // get clients
 router.get('/clients', (req, res) => {
     Client.find({}, (err, clients) => {
