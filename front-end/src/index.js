@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import "./main.css";
 import App from './App';
-const server = "";
+
 // create functions
 const addProductToDatabase = (product, callback) => {
-    fetch(server + "/api/products", {
+    fetch("/api/products", {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -19,11 +19,11 @@ const addProductToDatabase = (product, callback) => {
     }).then((res) => callback());
 }
 const getProductsFromDatabase = (callback) => {
-    fetch(server + "/api/products", {method: "GET", mode: "no-cors"}).then((res) => res.json()).then((json) => callback(json));
+    fetch("/api/products", {method: "GET", mode: "no-cors"}).then((res) => res.json()).then((json) => callback(json));
 }
 
 const editProductFromDatabase = (id, newPrice, callback) => {
-    fetch(server + "/api/products/" + id, {
+    fetch("/api/products/" + id, {
         method: "PUT",
         mode: "no-cors",
         headers: {
@@ -36,7 +36,7 @@ const editProductFromDatabase = (id, newPrice, callback) => {
 }
 
 const getClientsFromDatabase = (params, callback) => {
-    let url = server + "/api/clients/bundled";
+    let url = "/api/clients/bundled";
     if (params != null) {
         url += params;
     }
@@ -47,13 +47,13 @@ const getClientsFromDatabase = (params, callback) => {
 }
 
 const getOneClient = (client_id,callback) => {
-    fetch(server + "/api/clients/" + client_id, {method: "GET", mode: "no-cors"})
+    fetch("/api/clients/" + client_id, {method: "GET", mode: "no-cors"})
         .then((res) => res.json())
         .then((json) => callback(json));
 }
 
 const addClientToDatabase = (newClient, callback) => {
-    fetch(server + "/api/clients", {
+    fetch("/api/clients", {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -64,7 +64,7 @@ const addClientToDatabase = (newClient, callback) => {
 }
 
 const editClientAddProductsFromDatabase = (client, newProducts, callback) => {
-    fetch(server + "/api/clients/" + client._id, {
+    fetch("/api/clients/" + client._id, {
         method: "PUT",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
@@ -75,7 +75,7 @@ const editClientAddProductsFromDatabase = (client, newProducts, callback) => {
 }
 
 const completeUnpaidTransactions = (client, callback) => {
-    fetch(server + "/api/transactions/clients/" + client._id, {
+    fetch("/api/transactions/clients/" + client._id, {
         method: "PUT", 
         mode: "no-cors",
         headers: {
