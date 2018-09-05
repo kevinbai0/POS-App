@@ -160,5 +160,5 @@ router.put("/products/:product_id", (req, res) => {
 })
 app.use("/api", router);
 
-const port = process.env.PORT || 5000;
-app.listen(port);
+const port = 5000;
+app.listen(port, () => console.log("Running on port " + port));
