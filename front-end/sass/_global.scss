@@ -1,0 +1,55 @@
+@import "definitions";
+
+body {
+    background-color: $mainBackgroundColor;
+    font-family: $mainFont;
+}
+
+.expand-button {
+    font-weight: 200;
+    font-size: 2vw;
+    text-align: center;
+    flex-grow: 1;
+    padding: 1vw;
+    span {
+        cursor: pointer;
+    }
+}
+
+.arrow {
+    cursor: pointer;
+}
+
+.confirm-button {
+    background-color: white;
+    border: 1px solid #333333;
+    color: #333333;
+    border-radius: 500px;
+    padding: 0.6vw 0.5vw;
+    transition: ease 0.5s all;
+    cursor: pointer;
+    text-align: center;
+}
+
+.confirm-button:hover {
+    background-color: #DDDDDD;
+}
+
+.add-button {
+    cursor: pointer;
+}
+.cancel-button {
+    background-color: #AAAAAA;
+    border: 1px solid #333333;
+    color: #333333;
+    border-radius: 500px;
+    padding: 0.6vw 0.5vw;
+    transition: ease 0.5s all;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #333333;
+}
