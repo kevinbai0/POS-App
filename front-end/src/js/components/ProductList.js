@@ -28,6 +28,8 @@ class ProductList extends Component {
     }
 
     addProduct = (value) => {
+        console.log("Add product here");
+        console.log(value);
         this.props.addProductFunction(value, () => {
             this.props.getProducts();
         });

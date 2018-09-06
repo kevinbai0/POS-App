@@ -14,16 +14,15 @@ var router = express.Router();
 
 router.use(express.json());
 
-/*if (process.env.NODE_ENV === "production") {
-    // Serve any static files
-    app.use(express.static(path.join(__dirname, 'front-end/build')));
-    // Handle React routing, return all requests to React app
-    app.get('*', function(req, res) {
-        res.sendFile(path.join(__dirname, 'front-end/build', 'index.html'));
-    });
-}*/
-
-
+// Serve any static files
+app.use(express.static(path.join(__dirname, 'front-end/build')));
+// Handle React routing, return all requests to React app
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'front-end/build', 'index.html'));
+});
+app.get("/products", (req, res) => {
+    res.sendFile(path.join(__dirname, 'front-end/build', 'index.html'));
+})
 
 // get clients
 router.get('/clients', (req, res) => {
@@ -147,6 +146,7 @@ router.post("/products", (req, res) => {
         price: price
     });
     newProduct.save(() => res.end("Okay"));
+    res.end("Okay");
     
 });
 

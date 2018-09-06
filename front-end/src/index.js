@@ -6,6 +6,7 @@ import App from './App';
 
 // create functions
 const addProductToDatabase = (product, callback) => {
+    console.log("Adding product");
     console.log(product);
     fetch("/api/products", {
         method: "POST",
