@@ -1,23 +1,21 @@
 
-const productInfoFromClient = async (Product, client) => {
+const productInfoFromClient = (products, client) => {
     let mostRecentDate = null
     let sum = 0;
     var owedProducts = [] // {name and quantity}
-    await Promise.all(client.products.map(async (product) => {
+    client.transactions.map((transaction) => {
         // product: { _id: "", quantity: x, purchaseDate: Date, returnDate: Date }
-        if (product.returnDate == null) {
-            if (mostRecentDate == null) mostRecentDate = product.purchaseDate;
+        if (transaction.returnDate == null) {
+            if (mostRecentDate == null) mostRecentDate = transaction.purchaseDate;
             else {
-                if (product.purchaseDate > mostRecentDate) mostRecentDate = product.purchaseDate;
+                if (transaction.purchaseDate > mostRecentDate) mostRecentDate = transaction.purchaseDate;
             }
-            // add up the sum
-            await Product.findById(product.productId, function(err, found) {
-                console.log(found);
-                sum += found.price * product.quantity;
-                owedProducts.push({product: found, quantity: product.quantity});
-            });
+            let found = products.find((product) => product._id == transaction.product._id);
+            console.log(transaction);
+            sum += found.price * transaction.quantity;
+            owedProducts.push({product: found, quantity: transaction.quantity, purchaseDate: transaction.purchaseDate});
         }
-    }))
+    })
     let blurbString = "";
     for (var i = 0; i < owedProducts.length; i++) {
         if (i < 3) {
@@ -26,8 +24,7 @@ const productInfoFromClient = async (Product, client) => {
         if (i < 2 && i + 1 != owedProducts.length) blurbString += " • ";
         else if (i == 3) blurbString += "...";
     }
-
-    return {mostRecentDate: mostRecentDate, sum: sum, owedProducts: owedProducts, blurbString: blurbString};
+    return {mostRecentDate: mostRecentDate, sum: sum, blurbString: blurbString};
 }
 
 module.exports = productInfoFromClient;

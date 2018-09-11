@@ -10,10 +10,10 @@ class AddProductModal extends Component {
     }
     render() {
         return <div className="modal-add-product-container">
-            <input className="modal-input" id="modal-add-product-name-input" onChange={this.updateInput.bind(this)} placeholder="Enter product"/>
+            <input className="modal-input" id="modal-add-product-name-input" onChange={this.updateInput.bind(this)} placeholder="Ingresa el producto"/>
             <input className="modal-input" id="modal-add-product-price-input" onChange={this.updatePriceInput.bind(this)} placeholder="eg. 2.50"/>
-            <div className="cancel-button" onClick={this.props.cancelEvent}>Cancel</div>
-            <div className="confirm-button" onClick={this.confirmSelected.bind(this)}>Confirm</div>
+            <div className="cancel-button" onClick={this.props.cancelEvent}>Cancelar</div>
+            <div className="confirm-button" onClick={this.confirmSelected.bind(this)}>Confirmar</div>
         </div>
     }
 

@@ -39,17 +39,24 @@
         .owed-item-view {
             display: grid;
             grid-template-rows: 1fr;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            width: 100%;
             font-size: 1.5vw;
             padding-bottom: 1vw;
-            
-            .owed-item-price-overview-label {
-                justify-self: center;
+            .owed-item-product-date {
+                justify-self: end;
                 font-weight: 300;
+            }
+            .owed-item-price-overview-label {
+                justify-self: end;
+                font-weight: 300;
+                grid-column: 3/4;
+                grid-row: 1/2;
             }
             .owed-item-price-total-label {
                 justify-self: end;
-                grid-column: 3/4;
+                grid-row: 1/2;
+                grid-column: 4/5;
                 font-weight: 300;
             }
         }

@@ -8,7 +8,6 @@ class ProductList extends Component {
         this.state = { modalShown: false };
     }
     render() {
-        const addProductModal = <AddProductModal />
         const modal = (
             <div className="modal">
                 <AddProductModal cancelEvent={() => this.toggleModal(false)} confirmEvent={this.addProduct.bind(this)}/>
@@ -18,12 +17,12 @@ class ProductList extends Component {
         <div className="products-list-container">
             {this.state.modalShown ? modal : ""}
             <div className="products-list-header">
-                <div className="products-list-title">Current</div>
+                <div className="products-list-title">Productos actuales</div>
                 <AddButton id="products-list-add-button" onClick={(e) => this.toggleModal(true)}/>
             </div>
-            <input className="products-list-search" type="text" placeholder="Search product"/>
+            <input className="products-list-search" type="text" placeholder="Buscar productos"/>
             { this.props.products.length === 0 ? <EmptyProductTable showModal={(e) => this.toggleModal(true)}/> : <ProductsTable products={this.props.products} editProductFunction={this.props.editProduct} getProductFunction={this.props.getProducts} />}
-            <div className="expand-button"><span>Expand</span></div>
+            <div className="expand-button"><span>Expandir</span></div>
         </div>);
     }
 
@@ -66,13 +65,13 @@ class ProductItem extends Component {
             return <div className="product-item-container">
                 <div className="product-item-title">{this.props.product.name}</div>
                 <div className="product-item-price">${this.props.product.price.toFixed(2)}</div>
-                <div className="product-item-edit-button" onClick={this.toggleEditing.bind(this)}>Edit</div>
+                <div className="product-item-edit-button" onClick={this.toggleEditing.bind(this)}>Editar</div>
             </div>
         }
         return (<div className="product-item-container">
             <div className="product-item-title">{this.props.product.name}</div>
             <input className="product-item-price-input" value={this.state.textFieldInput} onChange={this.handleTextInput.bind(this)}/>
-            <div className="product-item-edit-button" onClick={this.toggleEditing.bind(this)}>Done</div>
+            <div className="product-item-edit-button" onClick={this.toggleEditing.bind(this)}>Hecho</div>
         </div>);
     }
 
@@ -81,7 +80,7 @@ class ProductItem extends Component {
             this.setState({isEditing: true});
         }
         else {
-            if (!isNaN(this.state.textFieldInput) && this.state.textFieldInput != this.props.price) {
+            if (!isNaN(this.state.textFieldInput) && this.state.textFieldInput !== this.props.price) {
                 this.props.editProductFunction(this.props.product._id, parseFloat(this.state.textFieldInput), () => {
                     this.props.getProductFunction();
                 });
@@ -98,9 +97,9 @@ class EmptyProductTable extends Component {
     render() {
         return <div className="products-list-empty-table">
             <div className="products-list-empty-title">
-                No products found, add new product?
+                No se encontraron productos, agregar nuevo producto?
             </div>
-            <div className="confirm-button" onClick={this.props.showModal}>Add</div>
+            <div className="confirm-button" onClick={this.props.showModal}>Añadir</div>
         </div>
     }
 }
