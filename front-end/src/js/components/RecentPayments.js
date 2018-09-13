@@ -15,7 +15,7 @@ class RecentPayments extends Component {
                                     <div className="payment-item-time">{this.getTimeFromDateToString(transactionGroup.transaction.returnDate)}</div>
                                     <div className="payment-item-name">{transactionGroup.transaction.quantity} x {transactionGroup.transaction.product.name}</div>
                                     <div className="payment-item-client-name">{transactionGroup.name}</div>
-                                    <div className="payment-item-price">${transactionGroup.transaction.total != null ? transactionGroup.transaction.total.toFixed(2) : "0.00"}</div>
+                                    <div className="payment-item-price">{transactionGroup.transaction.total != null ? transactionGroup.transaction.total.toFixed(2) : "0.00"}</div>
                                     <div className="payment-item-date">{this.props.mapDateToString(transactionGroup.transaction.returnDate)}</div>
                                 </div>
                             );
@@ -36,7 +36,7 @@ class RecentPayments extends Component {
                                 <div className="payment-item-container" key={i}>
                                     <div className="payment-item-time">{this.getTimeFromDateToString(transaction.returnDate)}</div>
                                     <div className="payment-item-name">{transaction.quantity} x {transaction.product.name}</div>
-                                    <div className="payment-item-price">${transaction.total != null ? transaction.total.toFixed(2) : "0.00"}</div>
+                                    <div className="payment-item-price">{transaction.total != null ? transaction.total.toFixed(2) : "0.00"}</div>
                                     <div className="payment-item-date">{this.props.mapDateToString(transaction.returnDate)}</div>
                                 </div>
                             );

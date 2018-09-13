@@ -9,7 +9,7 @@ class ClientList extends Component {
         this.state = {modalShown: false, clientSelected: false, products: []};
     }
     componentDidMount() {
-        this.props.functions.products.GET_PRODUCTS((products) => {
+        this.props.functions.products.GET_PRODUCTS("", (products) => {
             this.setState({
                 products: products
             })
@@ -66,18 +66,18 @@ class ClientList extends Component {
                                     return <div className="owed-item-view" key={i}>
                                         <div className="owed-item-product-name">{transaction.product.name}</div>
                                         <div className="owed-item-product-date">{this.props.mapDateToString(transaction.purchaseDate)}</div>
-                                        <div className="owed-item-price-overview-label">{transaction.quantity} x ${unitPriceOfProduct.toFixed(2)}</div>
-                                        <div className="owed-item-price-total-label">${(unitPriceOfProduct * transaction.quantity).toFixed(2)}</div>
+                                        <div className="owed-item-price-overview-label">{transaction.quantity} x {unitPriceOfProduct.toFixed(2)}</div>
+                                        <div className="owed-item-price-total-label">{(unitPriceOfProduct * transaction.quantity).toFixed(2)}</div>
                                     </div>
                                 })
                             }
                         </div>
                         <div className="owed-item-view total-view">
                             <div className="owed-item-product-name total-view">Total</div>
-                            <div className="owed-item-price-total-label total-view">${this.props.currentClient.sumOfDebt.toFixed(2)}</div>
+                            <div className="owed-item-price-total-label total-view">{this.props.currentClient.sumOfDebt.toFixed(2)}</div>
                         </div>
                         <div className="complete-transaction-button" onClick={(e) => this.completeClientTransaction(this.props.currentClient)}>
-                            <div className="price-text">${this.props.currentClient.sumOfDebt.toFixed(2)}</div>
+                            <div className="price-text">{this.props.currentClient.sumOfDebt.toFixed(2)}</div>
                             <div className="transaction-text">Transacción completa</div>
                         </div>
                         <div className="expand-button"><span>Expandir</span></div>
@@ -140,7 +140,7 @@ class ClientTableContainer extends Component {
                             <div className="client-name">{client.name}</div>
                             <div className="client-date">{this.props.mapDateToString(client.mostRecentDate)}</div>
                             <div className="client-items-preview">{client.productsOwedBlurb}</div>
-                            <div className="client-price">${client.sumOfDebt.toFixed(2)}</div>
+                            <div className="client-price">{client.sumOfDebt.toFixed(2)}</div>
                             <Arrow id="client-arrow-svg"/>
                         </div>
                     )

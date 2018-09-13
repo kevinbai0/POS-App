@@ -601,6 +601,7 @@ body {
   text-align: center;
   flex-grow: 1;
   padding: 1vw;
+  display: none;
 }
 .expand-button span {
   cursor: pointer;

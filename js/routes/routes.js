@@ -134,7 +134,8 @@ router.put("/transactions/clients/:client_id", (req, res) => {
 
 // get products
 router.get("/products", (req, res) => {
-    Product.find({}, (err, products) => {
+	let query = req.query.name == null ? "" : req.query.name;
+    Product.find({name: new RegExp(query, "i")}, (err, products) => {
         let sortedProducts = products.sort((a,b) => a.name < b.name ? -1 : 1);
         res.send(sortedProducts);
     });

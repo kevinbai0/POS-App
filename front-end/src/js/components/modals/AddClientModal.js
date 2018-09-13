@@ -27,7 +27,7 @@ class AddClientModal extends Component {
                     this.props.products.map((product, i) => {
                         return <div className="product-grid-item" key={i} onClick={(e) => this.addProduct(e, product)}>
                             <div>{product.name}</div>
-                            <div>${product.price.toFixed(2)}</div>
+                            <div>{product.price.toFixed(2)}</div>
                         </div>
                     })
                 }

@@ -20,15 +20,16 @@ class ProductList extends Component {
                 <div className="products-list-title">Productos actuales</div>
                 <AddButton id="products-list-add-button" onClick={(e) => this.toggleModal(true)}/>
             </div>
-            <input className="products-list-search" type="text" placeholder="Buscar productos"/>
+            <input className="products-list-search" type="text" placeholder="Buscar productos" onChange={(e) => this.updateSearchQuery(e)}/>
             { this.props.products.length === 0 ? <EmptyProductTable showModal={(e) => this.toggleModal(true)}/> : <ProductsTable products={this.props.products} editProductFunction={this.props.editProduct} getProductFunction={this.props.getProducts} />}
             <div className="expand-button"><span>Expandir</span></div>
         </div>);
-    }
+	}
+	updateSearchQuery = (e) => {
+		this.props.getProducts("?name=" + e.target.value);
+	}
 
     addProduct = (value) => {
-        console.log("Add product here");
-        console.log(value);
         this.props.addProductFunction(value, () => {
             this.props.getProducts();
         });
@@ -64,7 +65,7 @@ class ProductItem extends Component {
         if (!this.state.isEditing) {
             return <div className="product-item-container">
                 <div className="product-item-title">{this.props.product.name}</div>
-                <div className="product-item-price">${this.props.product.price.toFixed(2)}</div>
+                <div className="product-item-price">{this.props.product.price.toFixed(2)}</div>
                 <div className="product-item-edit-button" onClick={this.toggleEditing.bind(this)}>Editar</div>
             </div>
         }

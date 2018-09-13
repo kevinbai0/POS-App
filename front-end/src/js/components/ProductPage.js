@@ -13,13 +13,13 @@ class ProductPage extends Component {
         return (
             <div className="product-page-container">
                 <div className="product-page-title">Productos</div>
-                <ProductList products={this.state.products} addProductFunction={this.props.functions.ADD_PRODUCT} getProducts={this.getProducts.bind(this)} editProduct={this.props.functions.EDIT_PRODUCT}/>
+                <ProductList products={this.state.products} addProductFunction={this.props.functions.ADD_PRODUCT} getProducts={this.getProducts} editProduct={this.props.functions.EDIT_PRODUCT}/>
             </div>
         );
     }
 
-    getProducts = () => {
-        this.props.functions.GET_PRODUCTS((returnedProducts) => {
+    getProducts = (params) => {
+        this.props.functions.GET_PRODUCTS(params, (returnedProducts) => {
             this.setState({products: returnedProducts});
         });
     }

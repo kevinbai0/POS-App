@@ -7,8 +7,6 @@ import App from './App';
 
 // create functions
 const addProductToDatabase = (product, callback) => {
-    console.log("Adding product");
-    console.log(product);
     fetch("/api/products", {
         method: "POST",
         headers: {
@@ -17,8 +15,12 @@ const addProductToDatabase = (product, callback) => {
         body: JSON.stringify(product)
     }).then((res) => callback());
 }
-const getProductsFromDatabase = (callback) => {
-    fetch("/api/products").then((res) => res.json()).then((json) => callback(json));
+const getProductsFromDatabase = (params, callback) => {
+	let url = "/api/products";
+	if (params != null) {
+        url += params;
+	}
+    fetch(url).then((res) => res.json()).then((json) => callback(json));
 }
 
 const editProductFromDatabase = (id, newPrice, callback) => {
@@ -50,7 +52,6 @@ const getOneClient = (client_id,callback) => {
 }
 
 const addClientToDatabase = (newClient, callback) => {
-    console.log(newClient);
     fetch("/api/clients", {
         method: "POST",
         headers: {
@@ -71,7 +72,6 @@ const editClientAddProductsFromDatabase = (client, callback) => {
 }
 
 const completeUnpaidTransactions = (client, callback) => {
-    console.log("Complete unpaid");
     fetch("/api/transactions/clients/" + client._id, {
         method: "PUT", 
         headers: {
@@ -84,8 +84,6 @@ const completeUnpaidTransactions = (client, callback) => {
 }
 
 const signInToDatabase = (formData, callback) => {
-    console.log("Sign in");
-    console.log(formData);
     fetch("/api/authentication/login", {
         method: "POST",
         headers: {
