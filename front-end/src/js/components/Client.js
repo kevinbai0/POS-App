@@ -17,7 +17,15 @@ class Client extends Component {
     render() {
         return <div className="client-container">
             <div className="client-title">Clientela</div>
-            <ClientList functions={this.props.functions} clients={this.state.clients} fetchClients={this.fetchClients} selectClient={this.setClient} currentClient={this.state.currentClient} addClient={this.addClient} mapDateToString={this.mapDateToString}/>
+			<ClientList 
+				functions={this.props.functions}
+				clients={this.state.clients}
+				fetchClients={this.fetchClients.bind(this)}
+				selectClient={this.setClient.bind(this)}
+				currentClient={this.state.currentClient}
+				addClient={this.addClient.bind(this)}
+				deleteCurrentClient={this.deleteCurrentClient.bind(this)}
+				mapDateToString={this.mapDateToString.bind(this)}/>
             <RecentPayments pastTransactions={this.state.pastTransactions} mapDateToString={this.mapDateToString} currentClient={this.state.currentClient}/>
         </div>
     }
@@ -49,7 +57,14 @@ class Client extends Component {
         this.props.functions.clients.ADD_CLIENT(client, () => {
             this.fetchClients();
         })
-    }
+	}
+	deleteCurrentClient = () => {
+		if (this.state.currentClient != null) {
+			this.props.functions.clients.DELETE_CLIENT(this.state.currentClient, () => {
+				this.setClient(null);
+			});
+		}
+	}
     fetchClients = (params) => {
         this.props.functions.clients.GET_CLIENTS(params, (clients) => {
             this.setState({

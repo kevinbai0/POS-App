@@ -607,6 +607,18 @@ body {
   cursor: pointer;
 }
 
+.delete-button {
+  font-weight: 200;
+  font-size: 2vw;
+  text-align: center;
+  flex-grow: 1;
+  padding: 1vw;
+  width: 100%;
+}
+.delete-button span {
+  cursor: pointer;
+}
+
 .arrow {
   cursor: pointer;
 }

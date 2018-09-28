@@ -43,7 +43,6 @@ class ProductList extends Component {
 
 class ProductsTable extends Component {
     render() {
-        console.log(this.props.products);
         return <div className="products-list-table">
             {
                 this.props.products.map((product, key) => {

@@ -71,6 +71,14 @@ const editClientAddProductsFromDatabase = (client, callback) => {
     }).then((res) => callback());
 }
 
+const deleteClient = (client, callback) => {
+	fetch("/api/clients/" + client._id, {
+		method: "DELETE",
+		headers: { "Content-Type": "application/json" }
+	}).then((res) => console.log("Deleted"));
+	callback();
+}
+
 const completeUnpaidTransactions = (client, callback) => {
     fetch("/api/transactions/clients/" + client._id, {
         method: "PUT", 
@@ -93,7 +101,6 @@ const signInToDatabase = (formData, callback) => {
     })
         .then((res) => res.json())
         .then((json) => {
-            console.log(json);
             callback(json.authenticated);
         })
 }
@@ -115,7 +122,8 @@ const functions = {
         ADD_CLIENT: addClientToDatabase,
         GET_ONE_CLIENT: getOneClient,
         EDIT_CLIENT_ADD_PRODUCTS: editClientAddProductsFromDatabase,
-        EDIT_CLIENT_TRANSACTION_COMPLETE: completeUnpaidTransactions
+		EDIT_CLIENT_TRANSACTION_COMPLETE: completeUnpaidTransactions,
+		DELETE_CLIENT: deleteClient
     },
     transactions: {
         GET_ALL_TRANSACTIONS: getAllTransactions

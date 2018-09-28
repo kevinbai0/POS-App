@@ -60,7 +60,6 @@ class AddClientModal extends Component {
     }
 
     addProduct = (e, product) => {
-        console.log(product);
         let productIndex = this.state.transactions.findIndex((transaction) => {
             return transaction.product._id === product._id && transaction.returnDate == null;
         });

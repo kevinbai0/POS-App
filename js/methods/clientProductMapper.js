@@ -11,7 +11,6 @@ const productInfoFromClient = (products, client) => {
                 if (transaction.purchaseDate > mostRecentDate) mostRecentDate = transaction.purchaseDate;
             }
             let found = products.find((product) => product._id == transaction.product._id);
-            console.log(transaction);
             sum += found.price * transaction.quantity;
             owedProducts.push({product: found, quantity: transaction.quantity, purchaseDate: transaction.purchaseDate});
         }

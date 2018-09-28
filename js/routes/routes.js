@@ -112,6 +112,11 @@ router.put("/clients/:client_id", (req, res) => {
     });
 });
 
+router.delete("/clients/:client_id", (req, res) => {
+	let id = req.params.client_id;
+	Client.deleteOne({_id: id}, (err) => res.end("Success"));
+});
+
 router.put("/transactions/clients/:client_id", (req, res) => {
     Product.find({}, (err, products) => {
         let id = req.params.client_id;

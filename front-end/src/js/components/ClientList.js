@@ -80,7 +80,7 @@ class ClientList extends Component {
                             <div className="price-text">{this.props.currentClient.sumOfDebt.toFixed(2)}</div>
                             <div className="transaction-text">Transacción completa</div>
                         </div>
-                        <div className="expand-button"><span>Expandir</span></div>
+                        <div className="delete-button"><span onClick={(e) => this.deleteCurrentClient()}>Borrar</span></div>
                     </div>
                 </div>
             )
@@ -118,7 +118,11 @@ class ClientList extends Component {
             // on finish, reload client info
             this.clientSelected(client);
         });
-    }
+	}
+	
+	deleteCurrentClient = () => {
+		this.props.deleteCurrentClient();
+	}
 
     completeClientTransaction(client) {
         if (client.sumOfDebt > 0) {

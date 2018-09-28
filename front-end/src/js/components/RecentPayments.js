@@ -2,7 +2,6 @@ import React, {Component} from "react";
 
 class RecentPayments extends Component {
     render() {
-        console.log(this.props.currentClient);
         if (this.props.currentClient == null) {
             return (
                 <div className="recent-payments-container">
@@ -10,15 +9,15 @@ class RecentPayments extends Component {
                 <div className="recent-payments-list-view">
                     {
                         this.props.pastTransactions.map((transactionGroup, i) => {
-                            return (
-                                <div className="payment-item-container" key={i}>
-                                    <div className="payment-item-time">{this.getTimeFromDateToString(transactionGroup.transaction.returnDate)}</div>
-                                    <div className="payment-item-name">{transactionGroup.transaction.quantity} x {transactionGroup.transaction.product.name}</div>
-                                    <div className="payment-item-client-name">{transactionGroup.name}</div>
-                                    <div className="payment-item-price">{transactionGroup.transaction.total != null ? transactionGroup.transaction.total.toFixed(2) : "0.00"}</div>
-                                    <div className="payment-item-date">{this.props.mapDateToString(transactionGroup.transaction.returnDate)}</div>
-                                </div>
-                            );
+							return (
+								<div className="payment-item-container" key={i}>
+									<div className="payment-item-time">{this.getTimeFromDateToString(transactionGroup.transaction.returnDate)}</div>
+									<div className="payment-item-name">{transactionGroup.transaction.quantity} x {transactionGroup.transaction.product.name}</div>
+									<div className="payment-item-client-name">{transactionGroup.name}</div>
+									<div className="payment-item-price">{transactionGroup.transaction.total != null ? transactionGroup.transaction.total.toFixed(2) : "0.00"}</div>
+									<div className="payment-item-date">{this.props.mapDateToString(transactionGroup.transaction.returnDate)}</div>
+								</div>
+							);
                         })
                     }
                 </div>

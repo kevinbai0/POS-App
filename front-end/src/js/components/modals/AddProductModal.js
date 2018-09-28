@@ -18,7 +18,6 @@ class AddProductModal extends Component {
     }
 
     confirmSelected = () => {
-        console.log(isNaN(this.state.priceInput));
         if (this.state.input.length === 0 || this.state.priceInput.length === 0 || isNaN(this.state.priceInput)) {
             window.alert("Invalid input!");
             return;

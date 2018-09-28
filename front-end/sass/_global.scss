@@ -17,6 +17,18 @@ body {
 	display: none;
 }
 
+.delete-button {
+	font-weight: 200;
+	font-size: 2vw;
+	text-align: center;
+	flex-grow: 1;
+	padding: 1vw;
+	span {
+		cursor: pointer;
+	}
+	width: 100%;
+}
+
 .arrow {
     cursor: pointer;
 }
